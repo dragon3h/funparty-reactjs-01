@@ -1,0 +1,14 @@
+.login-logout {
+  background-color: darkcyan;
+
+  height: 100%;
+  padding: .5rem;
+  font-size: 1.4rem;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+    color: darken(white, 30%);
+    background-color: darken(darkcyan, 30%);
+  }
+}
