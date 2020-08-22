@@ -1,5 +1,3 @@
-@import "../../../styles/_colors.scss";
-
 .custom-button {
   min-width: 100px;
   width: auto;
@@ -8,17 +6,18 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: $primary-color;
+  background-color: #46a0ee;
   color: white;
   text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
+  font-family: "Open Sans Condensed";
   font-weight: bolder;
   border: none;
   cursor: pointer;
-
-  &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-  }
 }
+.custom-button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+/*# sourceMappingURL=custom-button.module.css.map */

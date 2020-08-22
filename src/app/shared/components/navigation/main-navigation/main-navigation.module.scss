@@ -1,5 +1,7 @@
+@import "../../../../styles/_colors.scss";
+
 .main_header__main-navigation {
-  background-color: deepskyblue;
+  background-color: $primary-color;
 
   width: 100%;
   display: block;
