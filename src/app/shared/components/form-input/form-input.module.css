@@ -1,0 +1,46 @@
+.input-group {
+  position: relative;
+  margin: 1rem 0;
+  width: 100%;
+}
+.input-group .form-input {
+  background: none;
+  background-color: white;
+  color: grey;
+  font-size: 1.15rem;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid grey;
+  margin: 25px 0;
+}
+.input-group .form-input:focus {
+  outline: none;
+}
+.input-group .form-input:focus ~ .form-input__label {
+  top: -1rem;
+  font-size: 0.8rem;
+  color: black;
+}
+.input-group input[type=password] {
+  letter-spacing: 0.3em;
+}
+.input-group .form-input__label {
+  color: grey;
+  font-size: 1rem;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+.input-group .form-input__label.shrink {
+  top: -1rem;
+  font-size: 0.8rem;
+  color: black;
+}
+
+/*# sourceMappingURL=form-input.module.css.map */

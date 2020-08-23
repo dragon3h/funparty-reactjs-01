@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 
 import styles from './bouncy-castle.module.scss';
 
 import CustomButton from '../../../../shared/components/custom-button/custom-button.component';
-import BouncyCastleDetails from '../bouncy-castle-details/bouncy-castle-details.component';
 
-const BouncyCastle = ({bouncyCastle, history}) =>{
+const BouncyCastle = ({bouncyCastle, history}) => {
   
   const ShowDetails = (event) => {
-    console.log(history);
-    console.log(event.target.id);
-    history.push('/products/bouncy-castle/3');
-    // <Link to="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
+    history.push(`/products/bouncy-castle/${event.target.id}`);
   };
   
   return (
@@ -39,6 +34,6 @@ const BouncyCastle = ({bouncyCastle, history}) =>{
       </div>
   );
   
-}
+};
 
 export default BouncyCastle;

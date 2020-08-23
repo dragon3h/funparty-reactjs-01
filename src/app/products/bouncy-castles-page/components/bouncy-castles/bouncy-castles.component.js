@@ -13,14 +13,7 @@ class BouncyCastlesComponent extends Component {
       bouncyCastles: bouncyCastles,
     };
   }
-  
-  // ShowDetails = (event) => {
-  //   // console.log(this.props);
-  //   console.log(event.target.id);
-  //   // history.push('/products/bouncy-castle/3')
-  //   // <Link to="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
-  // };
-  
+
   render() {
     const {bouncyCastles} = this.state;
     return (
@@ -86,7 +79,6 @@ class BouncyCastlesComponent extends Component {
                 bouncyCastles.map((bouncyCastle) => (
                     <BouncyCastle key={bouncyCastle.id}
                                   bouncyCastle={bouncyCastle}
-                                  // ShowDetails={this.ShowDetails}
                                   history={this.props.history}/>
                 ))
               }
