@@ -7,14 +7,16 @@ import Login from './users/login/login.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';
 import styles from './App.module.scss';
+import BouncyCastleDetails
+  from './products/bouncy-castles-page/components/bouncy-castle-details/bouncy-castle-details.component';
 
 class App extends React.Component {
-  constructor(pros) {
-    super(pros);
+  constructor(props) {
+    super(props);
   }
   
   render() {
-    const isAuth = true;
+    const isAuth = false;
     return (
         <BrowserRouter>
           <MainNavigation />
@@ -24,7 +26,8 @@ class App extends React.Component {
                     <Redirect to='/products'/>
                 ) : (<Login/>)
             }/>
-            <Route path="/products" component={BouncyCastles}/>
+            <Route path="/products/bouncy-castles" component={BouncyCastles}/>
+            <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
             <Route path="/schedule" component={Schedule}/>
             <Route path="/dashboard" component={Dashboard} />
             {/*<Route path="/" component={} />*/}

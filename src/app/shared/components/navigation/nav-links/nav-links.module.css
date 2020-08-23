@@ -38,6 +38,7 @@
   position: absolute;
 }
 .nav-links .nav-links__dropdown:hover .nav-links__content {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   background-color: #46a0ee;

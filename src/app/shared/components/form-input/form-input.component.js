@@ -1,7 +1,6 @@
 import React from 'react';
 
-import fistyles from './form-input.module.scss';
-import styles from '../../../products/bouncy-castles-page/components/bouncy-castle/bouncy-castle.module.scss';
+import styles from './form-input.module.scss';
 
 const formInput = ({handleChange, label, ...otherProps}) => {
   return (
@@ -11,8 +10,8 @@ const formInput = ({handleChange, label, ...otherProps}) => {
         label ? (
           <label
             className={`${
-              otherProps.value.length ? 'shrink' : ''
-            } ${fistyles['form-input__label']}`}>
+              otherProps.value.length ? styles.shrink : ''
+            } ${styles['form-input__label']}`}>
             {label}
           </label>
         ) : null

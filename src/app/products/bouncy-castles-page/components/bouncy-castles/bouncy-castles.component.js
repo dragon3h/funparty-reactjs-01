@@ -14,71 +14,80 @@ class BouncyCastlesComponent extends Component {
     };
   }
   
+  // ShowDetails = (event) => {
+  //   // console.log(this.props);
+  //   console.log(event.target.id);
+  //   // history.push('/products/bouncy-castle/3')
+  //   // <Link to="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
+  // };
+  
   render() {
     const {bouncyCastles} = this.state;
     return (
-        <div className={styles["bouncy-castles"]}>
+        <div className={styles['bouncy-castles']}>
           <h1>Bouncy Castles</h1>
           <div className={styles.grid}>
-            <div className={styles["grid-header"]}>
-              <div className={styles["grid-header__row"]}>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+            <div className={styles['grid-header']}>
+              <div className={styles['grid-header__row']}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Code
                   </span>
                 </div>
-                <div className={`${styles["grid-header__cell"]} name`}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={`${styles['grid-header__cell']} name`}>
+                  <span className={styles['grid-header__cell-text']}>
                     Name
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Preview
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Category
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Description
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Age
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Max Quantity
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Water Slide
                   </span>
                 </div>
-                <div className={styles["grid-header__cell"]}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={styles['grid-header__cell']}>
+                  <span className={styles['grid-header__cell-text']}>
                     Rent Price
                   </span>
                 </div>
-                <div className={`${styles["grid-header__cell"]} action`}>
-                  <span className={styles["grid-header__cell-text"]}>
+                <div className={`${styles['grid-header__cell']} action`}>
+                  <span className={styles['grid-header__cell-text']}>
                     Details
                   </span>
                 </div>
               </div>
             </div>
-            <div className={styles["grid-body"]}>
+            <div className={styles['grid-body']}>
               {
                 bouncyCastles.map((bouncyCastle) => (
                     <BouncyCastle key={bouncyCastle.id}
-                                  bouncyCastle={bouncyCastle}/>
+                                  bouncyCastle={bouncyCastle}
+                                  // ShowDetails={this.ShowDetails}
+                                  history={this.props.history}/>
                 ))
               }
             </div>
