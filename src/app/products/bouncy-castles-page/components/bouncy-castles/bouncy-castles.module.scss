@@ -3,6 +3,12 @@
     text-align: center;
   }
 
+  .list-page-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+  }
+
   .grid {
     border: 1px solid blue;
     .grid-header {

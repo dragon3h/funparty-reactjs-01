@@ -4,6 +4,7 @@ import styles from './bouncy-castles.module.scss';
 
 import bouncyCastles from '../../../../assets/bouncy-castles.json';
 import BouncyCastle from '../bouncy-castle/bouncy-castle.component';
+import CustomButton from '../../../../shared/components/custom-button/custom-button.component';
 
 class BouncyCastlesComponent extends Component {
   constructor(props) {
@@ -13,12 +14,21 @@ class BouncyCastlesComponent extends Component {
       bouncyCastles: bouncyCastles,
     };
   }
-
+  
+  componentDidMount() {
+    this.setState({ bouncyCastles: bouncyCastles });
+  }
+  
   render() {
     const {bouncyCastles} = this.state;
     return (
         <div className={styles['bouncy-castles']}>
           <h1>Bouncy Castles</h1>
+          <div className={styles['list-page-buttons']}>
+            <CustomButton onClick={() => {
+              this.props.history.push(`/products/bouncy-castle/-1`)
+            }}>Add New</CustomButton>
+          </div>
           <div className={styles.grid}>
             <div className={styles['grid-header']}>
               <div className={styles['grid-header__row']}>

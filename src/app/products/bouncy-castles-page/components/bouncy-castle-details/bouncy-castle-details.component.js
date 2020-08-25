@@ -26,19 +26,35 @@ class BouncyCastleDetails extends React.Component {
   id = this.props.match.params.id;
   
   getDetails = () => {
-    
-    const currentItem = bouncyCastles[this.id - 1];
-    console.log(currentItem);
-    
-    if (currentItem.restrictions) {
-      currentItem.maxAge = currentItem.restrictions.maxAge ? currentItem.restrictions.maxAge : '';
-      currentItem.minAge = currentItem.restrictions.minAge ? currentItem.restrictions.minAge : '';
-      currentItem.maxQuantity = currentItem.restrictions.maxQuantity ?
-          currentItem.restrictions.maxQuantity.toString() :
-          '';
+    let currentItem;
+    if (+this.id === -1) {
+      currentItem = {
+        id: this.id,
+        code: '',
+        name: '',
+        img: '',
+        category: '',
+        description: '',
+        minAge: '',
+        maxAge: '',
+        maxQuantity: '',
+        isWater: '',
+        rentPrice: '',
+      };
+    } else {
+      currentItem = bouncyCastles[this.id - 1];
+      
+      if (currentItem.restrictions) {
+        currentItem.maxAge = currentItem.restrictions.maxAge ? currentItem.restrictions.maxAge : '';
+        currentItem.minAge = currentItem.restrictions.minAge ? currentItem.restrictions.minAge : '';
+        currentItem.maxQuantity = currentItem.restrictions.maxQuantity ?
+            currentItem.restrictions.maxQuantity.toString() :
+            '';
+      }
+      
+      currentItem.rentPrice = currentItem.rentPrice ? currentItem.rentPrice.toString() : '';
     }
     
-    currentItem.rentPrice = currentItem.rentPrice ? currentItem.rentPrice.toString() : '';
     return currentItem;
   };
   
@@ -63,10 +79,9 @@ class BouncyCastleDetails extends React.Component {
   };
   
   render() {
-    console.log(this.props);
     return (
         <div className="container" data-test="component-login">
-          <h2>Details of {this.item.name}</h2>
+          <h2>{+this.item.id === -1 ? 'New Bouncy Castle' : 'Details of ' + this.item.name}</h2>
           <form onSubmit={this.handleSubmit}>
             <FormInput
                 handleChange={this.handleChange}
