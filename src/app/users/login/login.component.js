@@ -5,7 +5,7 @@ import styles from './login.module.scss';
 
 import FormInput from '../../shared/components/form-input/form-input.component';
 import CustomButton from '../../shared/components/custom-button/custom-button.component';
-// import {auth, SignInWithGoogle} from '../../firebase/firebase.utils';
+import {auth, SignInWithGoogle} from '../../firebase/firebase.utils';
 
 class Login extends Component {
   constructor(props) {
@@ -35,14 +35,14 @@ class Login extends Component {
     this.setState({[name]: value});
   };
   
-  // logInWithGoogle = async () => {
-  //   const user = await SignInWithGoogle();
-  //   if (user) {
-  //     this.props.history.push(`${this.props.match.url}dashboard`);
-  //   } else {
-  //
-  //   }
-  // };
+  logInWithGoogle = async () => {
+    const user = await SignInWithGoogle();
+    if (user) {
+      this.props.history.push(`${this.props.match.url}dashboard`);
+    } else {
+
+    }
+  };
   
   render() {
     return (
@@ -66,9 +66,9 @@ class Login extends Component {
           <CustomButton type="submit">
             Login
           </CustomButton>
-          {/*<CustomButton onClick={this.logInWithGoogle}>*/}
-          {/*  Login With Google*/}
-          {/*</CustomButton>*/}
+          <CustomButton onClick={this.logInWithGoogle}>
+            Login With Google
+          </CustomButton>
         </form>
       </div>
     );

@@ -5,8 +5,11 @@ import MainNavigation from './shared/components/navigation/main-navigation/main-
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
 import Login from './users/login/login.component';
+
+import LoginRegister from './users/login-register-page/login-register.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import styles from './App.module.scss';
 import BouncyCastleDetails
   from './products/bouncy-castles-page/components/bouncy-castle-details/bouncy-castle-details.component';
@@ -14,10 +17,39 @@ import BouncyCastleDetails
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.state = {
+      currentUser: null,
+    };
+    
+    this.unsubscribeFromAuth = null;
+  }
+  
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userRef = await createUserProfileDocument(user);
+        userRef.onSnapshot((snapShot) => {
+          this.setState({
+                currentUser: {
+                  id: snapShot.id,
+                  ...snapShot.data(),
+                },
+              },
+              () => {
+                console.log(this.state);
+              });
+        });
+      }
+    });
+  }
+  
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
   }
   
   render() {
-    const isAuth = true;
+    const isAuth = this.state.currentUser;
     if (isAuth) {
       return (
           <BrowserRouter>
@@ -35,7 +67,7 @@ class App extends React.Component {
       return (
           <BrowserRouter>
             <Switch>
-              <Route path="/" component={Login}/>
+              <Route path="/" component={LoginRegister}/>
             </Switch>
           </BrowserRouter>
       );
