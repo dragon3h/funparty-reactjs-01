@@ -1,12 +1,10 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import store from './redux/store';
 import MainNavigation from './shared/components/navigation/main-navigation/main-navigation.component';
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
-import Login from './users/login/login.component';
 import LoginRegister from './users/login-register-page/login-register.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';
@@ -15,34 +13,27 @@ import styles from './App.module.scss';
 import BouncyCastleDetails
   from './products/bouncy-castles-page/components/bouncy-castle-details/bouncy-castle-details.component';
 import UserProfile from './users/profile/user-profile.component';
+import {setCurrentUser} from './redux/user/user.actions';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      currentUser: null,
-    };
-    
-    this.unsubscribeFromAuth = null;
-  }
+  unsubscribeFromAuth = null;
   
   componentDidMount() {
+    const {setCurrentUser} = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user);
         userRef.onSnapshot((snapShot) => {
-          this.setState({
-                currentUser: {
-                  id: snapShot.id,
-                  ...snapShot.data(),
-                },
-              },
-              () => {
-                console.log(this.state);
-              });
+          setCurrentUser({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
         });
       }
+      
+      setCurrentUser(user);
     });
   }
   
@@ -51,35 +42,37 @@ class App extends React.Component {
   }
   
   render() {
-    const isAuth = this.state.currentUser;
+    const isAuth = this.props.currentUser;
     if (isAuth) {
       return (
-          <Provider store={store}>
-            <BrowserRouter>
-              <MainNavigation/>
-              <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/products/bouncy-castles" component={BouncyCastles}/>
-                <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
-                <Route path="/schedule" component={Schedule}/>
-                <Route path="/dashboard" component={Dashboard}/>
-                <Route path="/user-profile" component={UserProfile}/>
-              </Switch>
-            </BrowserRouter>
-          </Provider>
+          <React.Fragment>
+            <MainNavigation/>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/products/bouncy-castles" component={BouncyCastles}/>
+              <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
+              <Route path="/schedule" component={Schedule}/>
+              <Route path="/dashboard" component={Dashboard}/>
+              <Route path="/user-profile" component={UserProfile}/>
+            </Switch>
+          </React.Fragment>
       );
     } else {
       return (
-          <Provider store={store}>
-            <BrowserRouter>
-              <Switch>
-                <Route path="/" component={LoginRegister}/>
-              </Switch>
-            </BrowserRouter>
-          </Provider>
+          <Switch>
+            <Route path="/" component={LoginRegister}/>
+          </Switch>
       );
     }
   }
 }
 
-export default App;
+const mapStateToProps = ({user}) => ({
+  currentUser: user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
