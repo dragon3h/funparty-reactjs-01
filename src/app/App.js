@@ -7,7 +7,6 @@ import MainNavigation from './shared/components/navigation/main-navigation/main-
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
 import Login from './users/login/login.component';
-
 import LoginRegister from './users/login-register-page/login-register.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';
@@ -15,6 +14,7 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import styles from './App.module.scss';
 import BouncyCastleDetails
   from './products/bouncy-castles-page/components/bouncy-castle-details/bouncy-castle-details.component';
+import UserProfile from './users/profile/user-profile.component';
 
 class App extends React.Component {
   constructor(props) {
@@ -63,6 +63,7 @@ class App extends React.Component {
                 <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
                 <Route path="/schedule" component={Schedule}/>
                 <Route path="/dashboard" component={Dashboard}/>
+                <Route path="/user-profile" component={UserProfile}/>
               </Switch>
             </BrowserRouter>
           </Provider>
