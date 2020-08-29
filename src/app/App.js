@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import { Provider } from 'react-redux';
 
+import store from './redux/store';
 import MainNavigation from './shared/components/navigation/main-navigation/main-navigation.component';
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
@@ -52,24 +54,28 @@ class App extends React.Component {
     const isAuth = this.state.currentUser;
     if (isAuth) {
       return (
-          <BrowserRouter>
-            <MainNavigation/>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/products/bouncy-castles" component={BouncyCastles}/>
-              <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
-              <Route path="/schedule" component={Schedule}/>
-              <Route path="/dashboard" component={Dashboard}/>
-            </Switch>
-          </BrowserRouter>
+          <Provider store={store}>
+            <BrowserRouter>
+              <MainNavigation/>
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/products/bouncy-castles" component={BouncyCastles}/>
+                <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
+                <Route path="/schedule" component={Schedule}/>
+                <Route path="/dashboard" component={Dashboard}/>
+              </Switch>
+            </BrowserRouter>
+          </Provider>
       );
     } else {
       return (
-          <BrowserRouter>
-            <Switch>
-              <Route path="/" component={LoginRegister}/>
-            </Switch>
-          </BrowserRouter>
+          <Provider store={store}>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/" component={LoginRegister}/>
+              </Switch>
+            </BrowserRouter>
+          </Provider>
       );
     }
   }

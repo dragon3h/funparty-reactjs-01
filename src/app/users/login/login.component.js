@@ -19,14 +19,14 @@ class Login extends Component {
   
   handleSubmit = async (event) => {
     event.preventDefault();
-    // const { email, password } = this.state;
-    //
-    // try {
-    //   await auth.signInWithEmailAndPassword(email, password);
-    //   this.setState({email: '', password: ''})
-    // } catch (err) {
-    //   console.log('error when user try login: ', err);
-    // }
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({email: '', password: ''})
+    } catch (err) {
+      console.log('error when user try login: ', err);
+    }
   }
   
   handleChange = (event) => {
