@@ -27,7 +27,11 @@ const navLinks = () => {
         <li>
           <NavLink to='/schedule'>Schedule</NavLink>
         </li>
+        <li>
+          <NavLink to="/orders">Orders</NavLink>
+        </li>
       </ul>
+      
   );
 };
 

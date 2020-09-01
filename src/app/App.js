@@ -14,6 +14,7 @@ import BouncyCastleDetails
   from './products/bouncy-castles-page/components/bouncy-castle-details/bouncy-castle-details.component';
 import UserProfile from './users/profile/user-profile.component';
 import {setCurrentUser} from './redux/user/user.actions';
+import Orders from './orders/components/orders/orders.component';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -54,6 +55,7 @@ class App extends React.Component {
               <Route path="/schedule" component={Schedule}/>
               <Route path="/dashboard" component={Dashboard}/>
               <Route path="/user-profile" component={UserProfile}/>
+              <Route path="/orders" component={Orders}/>
             </Switch>
           </React.Fragment>
       );
