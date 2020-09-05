@@ -1,64 +1,22 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-import bouncyCastles from '../../../../assets/bouncy-castles.json';
 import styles from './bouncy-castle-details.module.scss';
 import FormInput from '../../../../shared/components/form-input/form-input.component';
 import CustomButton from '../../../../shared/components/custom-button/custom-button.component';
+import {getBouncyCastleDetails} from '../../../../redux/products/bouncy-castle-details/bouncy-castle-details.actions';
 
 class BouncyCastleDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      code: this.item.code,
-      name: this.item.name,
-      img: this.item.img || '',
-      category: this.item.category,
-      description: this.item.description,
-      minAge: this.item.minAge,
-      maxAge: this.item.maxAge,
-      maxQuantity: this.item.maxQuantity,
-      isWater: this.item.isWater ? 'Yes' : 'No',
-      rentPrice: this.item.rentPrice,
-    };
+  state = {...this.props.bouncyCastle};
+  
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    const {getBouncyCastleDetails} = this.props;
+    getBouncyCastleDetails(id);
+    this.setState((state, props) => {
+      return {...props.bouncyCastle};
+    });
   }
-  
-  id = this.props.match.params.id;
-  
-  getDetails = () => {
-    let currentItem;
-    if (+this.id === -1) {
-      currentItem = {
-        id: this.id,
-        code: '',
-        name: '',
-        img: '',
-        category: '',
-        description: '',
-        minAge: '',
-        maxAge: '',
-        maxQuantity: '',
-        isWater: '',
-        rentPrice: '',
-      };
-    } else {
-      currentItem = bouncyCastles[this.id - 1];
-      
-      if (currentItem.restrictions) {
-        currentItem.maxAge = currentItem.restrictions.maxAge ? currentItem.restrictions.maxAge : '';
-        currentItem.minAge = currentItem.restrictions.minAge ? currentItem.restrictions.minAge : '';
-        currentItem.maxQuantity = currentItem.restrictions.maxQuantity ?
-            currentItem.restrictions.maxQuantity.toString() :
-            '';
-      }
-      
-      currentItem.rentPrice = currentItem.rentPrice ? currentItem.rentPrice.toString() : '';
-    }
-    
-    return currentItem;
-  };
-  
-  item = this.getDetails();
   
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,6 +31,7 @@ class BouncyCastleDetails extends React.Component {
   };
   
   handleChange = (event) => {
+    // event.preventDefault();
     const {value, name} = event.target;
     
     this.setState({[name]: value});
@@ -81,7 +40,7 @@ class BouncyCastleDetails extends React.Component {
   render() {
     return (
         <div className="container" data-test="component-login">
-          <h2>{+this.item.id === -1 ? 'New Bouncy Castle' : 'Details of ' + this.item.name}</h2>
+          <h2>{this.state.id ? 'Details of ' + this.state.name : 'New Bouncy Castle'}</h2>
           <form onSubmit={this.handleSubmit}>
             <FormInput
                 handleChange={this.handleChange}
@@ -165,4 +124,14 @@ class BouncyCastleDetails extends React.Component {
   }
 };
 
-export default BouncyCastleDetails;
+const mapStateToProps = (state) => {
+  return {
+    bouncyCastle: state.bouncyCastleDetails.bouncyCastleDetails,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getBouncyCastleDetails: (id) => dispatch(getBouncyCastleDetails(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BouncyCastleDetails);

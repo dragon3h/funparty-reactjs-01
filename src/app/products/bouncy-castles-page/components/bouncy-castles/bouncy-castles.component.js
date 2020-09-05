@@ -1,32 +1,25 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import styles from './bouncy-castles.module.scss';
 
-import bouncyCastles from '../../../../assets/bouncy-castles.json';
+import bouncyCastles from '../../../../assets/bouncy-castles.js';
 import BouncyCastle from '../bouncy-castle/bouncy-castle.component';
 import CustomButton from '../../../../shared/components/custom-button/custom-button.component';
 
 class BouncyCastlesComponent extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      bouncyCastles: bouncyCastles,
-    };
-  }
-  
   componentDidMount() {
-    this.setState({ bouncyCastles: bouncyCastles });
+    this.setState({bouncyCastles: bouncyCastles});
   }
   
   render() {
-    const {bouncyCastles} = this.state;
+    const {bouncyCastles} = this.props;
     return (
         <div className={styles['bouncy-castles']}>
           <h1>Bouncy Castles</h1>
           <div className={styles['list-page-buttons']}>
             <CustomButton onClick={() => {
-              this.props.history.push(`/products/bouncy-castle/-1`)
+              this.props.history.push(`/products/bouncy-castle/-1`);
             }}>Add New</CustomButton>
           </div>
           <div className={styles.grid}>
@@ -99,4 +92,10 @@ class BouncyCastlesComponent extends Component {
   }
 }
 
-export default BouncyCastlesComponent;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    bouncyCastles: state.bouncyCastles.bouncyCastles
+  }
+};
+
+export default connect(mapStateToProps)(BouncyCastlesComponent);
