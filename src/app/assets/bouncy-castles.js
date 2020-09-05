@@ -2,6 +2,7 @@ export default
     [
       {
         'id': 1,
+        'code': 'bc-01020001',
         'name': 'The Jet',
         'category': 'residential',
         'isWater': true,
@@ -30,7 +31,6 @@ export default
         'rentPrice': 100,
         'salePrice': 450,
         'images': [],
-        'code': 'bc-01020001',
         'description': 'This is a residential type bouncy house.',
         'createdDate': '01-01-2018',
         'changedDate': '19-03-2020',
