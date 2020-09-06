@@ -1,5 +1,5 @@
 import {BouncyCastleDetailsTypes} from './bouncy-castle-details.types';
-import {getBouncyCastleById} from '../bouncy-castles.utils';
+import {getBouncyCastleById, updateBouncyCastle} from '../bouncy-castles.utils';
 
 const INITIAL_STATE = {
   bouncyCastleDetails: {
@@ -14,24 +14,24 @@ const INITIAL_STATE = {
     maxQuantity: '',
     isWater: '',
     rentPrice: '',
-  }
+  },
 };
 
 const bouncyCastleDetailsReducer = (state = INITIAL_STATE, action) => {
+  let details = INITIAL_STATE;
   switch (action.type) {
     case BouncyCastleDetailsTypes.GET_BOUNCY_CASTLE_DETAILS:
-      // let details;
-      // if(+action.payload < 0) {
-      //   details = INITIAL_STATE;
-      // } else {
-      //   details = getBouncyCastleById(+action.payload);
-      // }
-      
-      const details = getBouncyCastleById(+action.payload);
+      details = getBouncyCastleById(+action.payload);
       return {
         ...state,
         bouncyCastleDetails: details,
       };
+    case BouncyCastleDetailsTypes.UPDATE_BOUNCE_CASTLE:
+      details = updateBouncyCastle(action.payload);
+      return {
+        ...state,
+        bouncyCastleDetails: details ? details : INITIAL_STATE,
+      }
     default:
       return state;
   }
