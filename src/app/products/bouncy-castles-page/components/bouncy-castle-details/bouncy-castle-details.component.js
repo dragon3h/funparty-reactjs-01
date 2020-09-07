@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import styles from './bouncy-castle-details.module.scss';
 import FormInput from '../../../../shared/components/form-input/form-input.component';
@@ -8,6 +9,7 @@ import {
   getBouncyCastleDetails,
   updateBouncyCastle,
 } from '../../../../redux/products/bouncy-castle-details/bouncy-castle-details.actions';
+import {selectCurrentBouncyCastleDetails} from '../../../../redux/products/bouncy-castle-details/bouncy-castle-details.selectors';
 
 class BouncyCastleDetails extends React.Component {
   state = {
@@ -130,11 +132,9 @@ class BouncyCastleDetails extends React.Component {
   }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    bouncyCastle: state.bouncyCastleDetails.bouncyCastleDetails,
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  bouncyCastle: selectCurrentBouncyCastleDetails,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getBouncyCastleDetails: (id) => dispatch(getBouncyCastleDetails(id)),

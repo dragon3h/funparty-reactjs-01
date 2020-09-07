@@ -1,7 +1,9 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
+import {selectCurrentUser} from './redux/user/user.selectors';
 import MainNavigation from './shared/components/navigation/main-navigation/main-navigation.component';
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
@@ -69,8 +71,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
