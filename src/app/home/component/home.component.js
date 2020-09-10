@@ -1,12 +1,12 @@
 import React from 'react';
 
-import styles from './home.module.scss';
+import {HomeContainer} from './home.styles';
 
 const Home = (props) => {
   return (
-      <div>
+      <HomeContainer>
         <h1>Home</h1>
-      </div>
+      </HomeContainer>
   );
 };
 

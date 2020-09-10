@@ -14,9 +14,9 @@ const bouncyCastlesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         bouncyCastles: action.payload,
       };
-    case BouncyCastlesTypes.GET_BOUNCY_CASTLE:
+    case BouncyCastlesTypes.UPDATE_BOUNCE_CASTLE_COLLECTION:
       return {
-        bouncyCastle: getBouncyCastleById(action.payload),
+        bouncyCastle: action.payload,
       };
     default:
       return state;

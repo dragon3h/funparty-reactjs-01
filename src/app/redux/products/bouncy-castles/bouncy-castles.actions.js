@@ -6,3 +6,10 @@ export const getBouncyCastles = (bouncyCastles) => {
     payload: bouncyCastles,
   };
 };
+
+export const addBouncyCastlesCollection = (bouncyCastles) => {
+  return {
+    type: BouncyCastlesTypes.UPDATE_BOUNCE_CASTLE_COLLECTION,
+    payload: bouncyCastles,
+  };
+};
