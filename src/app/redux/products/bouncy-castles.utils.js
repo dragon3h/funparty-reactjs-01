@@ -37,7 +37,7 @@ export const updateBouncyCastle = (bouncyCastle) => {
   }
 };
 
-const mapDbToFeBouncyCastle = (item) => {
+export const mapDbToFeBouncyCastle = (item) => {
   const mappedItem = {
     id: item.id,
     code: item.code,

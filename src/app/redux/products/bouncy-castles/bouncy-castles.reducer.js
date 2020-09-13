@@ -1,10 +1,9 @@
 import {BouncyCastlesTypes} from './bouncy-castles.types';
 
-import bouncyCastles from '../../../assets/bouncy-castles.js';
-import { getBouncyCastleById } from '../bouncy-castles.utils';
+// import bouncyCastles from '../../../assets/bouncy-castles.js';
 
 const INITIAL_STATE = {
-  bouncyCastles: bouncyCastles,
+  bouncyCastles: [],
 };
 
 const bouncyCastlesReducer = (state = INITIAL_STATE, action) => {

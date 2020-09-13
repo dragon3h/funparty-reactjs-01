@@ -19,9 +19,9 @@ const BouncyCastle = ({bouncyCastle, history}) => {
             className={styles['grid-body__cell']}>Category: {bouncyCastle.category}</div>
         <div className={styles['grid-body__cell']}>{bouncyCastle.description}</div>
         <div
-            className={styles['grid-body__cell']}>{bouncyCastle.restrictions.minAge} - {bouncyCastle.restrictions.maxAge}</div>
+            className={styles['grid-body__cell']}>{bouncyCastle.minAge} - {bouncyCastle.maxAge}</div>
         <div
-            className={styles['grid-body__cell']}>{bouncyCastle.restrictions.maxQuantity}</div>
+            className={styles['grid-body__cell']}>{bouncyCastle.maxQuantity}</div>
         <div className={styles['grid-body__cell']}>{bouncyCastle.isWater ?
             'Yes' :
             'No'}</div>

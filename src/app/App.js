@@ -3,14 +3,14 @@ import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import {selectCurrentUser, selectCurrentBouncyCastles} from './redux/user/user.selectors';
+import {selectCurrentUser} from './redux/user/user.selectors';
 import MainNavigation from './shared/components/navigation/main-navigation/main-navigation.component';
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
 import LoginRegister from './users/login-register-page/login-register.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';
-import {auth, createUserProfileDocument, addCollectionAndDocuments} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import styles from './App.module.scss';
 import BouncyCastleDetails
   from './products/bouncy-castles-page/components/bouncy-castle-details/bouncy-castle-details.component';
@@ -22,7 +22,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
   
   componentDidMount() {
-    const {setCurrentUser, bouncyCastles} = this.props;
+    const {setCurrentUser} = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user);
@@ -36,7 +36,6 @@ class App extends React.Component {
         });
       }
       setCurrentUser(user);
-      addCollectionAndDocuments('bouncyCastles', bouncyCastles);
     });
   }
   
@@ -73,7 +72,6 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  bouncyCastles: selectCurrentBouncyCastles
 });
 
 const mapDispatchToProps = (dispatch) => ({

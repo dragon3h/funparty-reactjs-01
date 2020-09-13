@@ -3,13 +3,26 @@ import {connect} from 'react-redux';
 
 import styles from './bouncy-castles.module.scss';
 
-import bouncyCastles from '../../../../assets/bouncy-castles.js';
 import BouncyCastle from '../bouncy-castle/bouncy-castle.component';
 import CustomButton from '../../../../shared/components/custom-button/custom-button.component';
 
+import {getBouncyCastles} from '../../../../redux/products/bouncy-castles/bouncy-castles.actions';
+
+import {firestore, convertBouncyCastlesCollectionToMap} from '../../../../firebase/firebase.utils';
+
 class BouncyCastlesComponent extends Component {
+  unsubscribeFromSnapshot = null;
+  
   componentDidMount() {
-    this.setState({bouncyCastles: bouncyCastles});
+    const connectionRef = firestore.collection('bouncyCastles');
+    const {getBouncyCastles} = this.props;
+    
+    connectionRef.onSnapshot(async (snapshot) => {
+      const result = convertBouncyCastlesCollectionToMap(snapshot);
+      console.log('bouncyCastles: ', result);
+      
+      getBouncyCastles(result);
+    });
   }
   
   render() {
@@ -79,11 +92,11 @@ class BouncyCastlesComponent extends Component {
             </div>
             <div className={styles['grid-body']}>
               {
-                bouncyCastles.map((bouncyCastle) => (
+                bouncyCastles.length > 0 ? bouncyCastles.map((bouncyCastle) => (
                     <BouncyCastle key={bouncyCastle.id}
                                   bouncyCastle={bouncyCastle}
                                   history={this.props.history}/>
-                ))
+                )) : 'No Data'
               }
             </div>
           </div>
@@ -94,8 +107,12 @@ class BouncyCastlesComponent extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    bouncyCastles: state.bouncyCastles.bouncyCastles
-  }
+    bouncyCastles: state.bouncyCastles.bouncyCastles,
+  };
 };
 
-export default connect(mapStateToProps)(BouncyCastlesComponent);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  getBouncyCastles: (bouncyCastles) => dispatch(getBouncyCastles(bouncyCastles))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BouncyCastlesComponent);

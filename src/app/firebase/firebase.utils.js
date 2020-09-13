@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import {mapDbToFeBouncyCastle} from '../redux/products/bouncy-castles.utils';
+
 const config = {
   apiKey: 'AIzaSyAJYSZgb3VsdDS_p2qpZ6Q0vFsQEJRpvhw',
   authDomain: 'funparty-firebase-a59dd.firebaseapp.com',
@@ -40,6 +42,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   
   return userRef;
+};
+
+export const convertBouncyCastlesCollectionToMap = (collection) => {
+  const transformedCollection = collection.docs.map((doc) => {
+    return mapDbToFeBouncyCastle(doc.data());
+  });
+  
+  return transformedCollection;
 };
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
