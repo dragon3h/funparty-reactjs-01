@@ -7,6 +7,7 @@ import {selectCurrentUser} from './redux/user/user.selectors';
 import MainNavigation from './shared/components/navigation/main-navigation/main-navigation.component';
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
+import Mascots from './products/mascots-page/components/mascots.component';
 import LoginRegister from './users/login-register-page/login-register.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';
@@ -53,6 +54,7 @@ class App extends React.Component {
               <Route exact path="/" component={Home}/>
               <Route path="/products/bouncy-castles" component={BouncyCastles}/>
               <Route path="/products/bouncy-castle/:id" component={BouncyCastleDetails}/>
+              <Route path="/products/mascots" component={Mascots} />
               <Route path="/schedule" component={Schedule}/>
               <Route path="/dashboard" component={Dashboard}/>
               <Route path="/user-profile" component={UserProfile}/>
