@@ -7,7 +7,7 @@ import {selectCurrentUser} from './redux/user/user.selectors';
 import MainNavigation from './shared/components/navigation/main-navigation/main-navigation.component';
 import Home from './home/component/home.component';
 import BouncyCastles from './products/bouncy-castles-page/components/bouncy-castles/bouncy-castles.component';
-import Mascots from './products/mascots-page/components/mascots.component';
+import Mascots from './products/mascots-page/components/mascots/mascots.component';
 import LoginRegister from './users/login-register-page/login-register.component';
 import Schedule from './schedule/components/schedule.component';
 import Dashboard from './dashboard/components/dashboard.component';

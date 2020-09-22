@@ -15,13 +15,10 @@ const BouncyCastle = ({bouncyCastle, history}) => {
         <div className={styles['grid-body__cell']}>{bouncyCastle.code}</div>
         <div className={styles['grid-body__cell']}>{bouncyCastle.name}</div>
         <div className={styles['grid-body__cell']}>{bouncyCastle.img}</div>
-        <div
-            className={styles['grid-body__cell']}>Category: {bouncyCastle.category}</div>
+        <div className={styles['grid-body__cell']}>Category: {bouncyCastle.category}</div>
         <div className={styles['grid-body__cell']}>{bouncyCastle.description}</div>
-        <div
-            className={styles['grid-body__cell']}>{bouncyCastle.minAge} - {bouncyCastle.maxAge}</div>
-        <div
-            className={styles['grid-body__cell']}>{bouncyCastle.maxQuantity}</div>
+        <div className={styles['grid-body__cell']}>{bouncyCastle.minAge} - {bouncyCastle.maxAge}</div>
+        <div className={styles['grid-body__cell']}>{bouncyCastle.maxQuantity}</div>
         <div className={styles['grid-body__cell']}>{bouncyCastle.isWater ?
             'Yes' :
             'No'}</div>

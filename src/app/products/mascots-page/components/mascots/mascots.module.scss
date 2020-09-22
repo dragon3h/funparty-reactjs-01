@@ -11,6 +11,7 @@
 
   .grid {
     border: 1px solid blue;
+
     .grid-header {
       .grid-header__row {
         display: flex;
@@ -20,7 +21,7 @@
 
         .grid-header__cell {
           padding: 10px;
-          width: 10%;
+          width: 11.11%;
           border: 1px solid orange;
           min-width: 140px;
 
@@ -32,6 +33,4 @@
       }
     }
   }
-
-
 }

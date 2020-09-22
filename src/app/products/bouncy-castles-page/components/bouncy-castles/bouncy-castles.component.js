@@ -28,7 +28,7 @@ class BouncyCastlesComponent extends Component {
   render() {
     const {bouncyCastles} = this.props;
     return (
-        <div className={styles['bouncy-castles']}>
+        <div className={styles['grid-container']}>
           <h1>Bouncy Castles</h1>
           <div className={styles['list-page-buttons']}>
             <CustomButton onClick={() => {
@@ -43,7 +43,7 @@ class BouncyCastlesComponent extends Component {
                     Code
                   </span>
                 </div>
-                <div className={`${styles['grid-header__cell']} name`}>
+                <div className={`${styles['grid-header__cell']}`}>
                   <span className={styles['grid-header__cell-text']}>
                     Name
                   </span>
@@ -112,7 +112,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getBouncyCastles: (bouncyCastles) => dispatch(getBouncyCastles(bouncyCastles))
+  getBouncyCastles: (bouncyCastles) => dispatch(getBouncyCastles(bouncyCastles)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BouncyCastlesComponent);

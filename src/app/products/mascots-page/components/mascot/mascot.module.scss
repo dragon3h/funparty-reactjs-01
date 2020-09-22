@@ -1,0 +1,11 @@
+.grid-body__row {
+  display: flex;
+  justify-content: space-between;
+
+  .grid-body__cell {
+    padding: 10px;
+    width: 11.11%;
+    border: 1px solid steelblue;
+    min-width: 140px;
+  }
+}
